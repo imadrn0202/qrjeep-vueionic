@@ -1,0 +1,10 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "qrjeep",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": true
+  }
+}

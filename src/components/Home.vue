@@ -2,11 +2,11 @@
   <div class="ion-page">
     <ion-header>
       <ion-toolbar>
-        <ion-title>QR Jeep</ion-title>
+        <ion-title>QR Jeepz</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <Login/>
+        <checkNumber/>
     </ion-content>
   </div>
 </template>
@@ -14,11 +14,11 @@
 <script>
 // @ is an alias to /src
 
-import Login from '../components/Login'
+import CheckNumber from './auth/CheckNumber'
 export default {
   name: 'home',
   components: {
-    Login
+    CheckNumber
   }
 }
 </script>

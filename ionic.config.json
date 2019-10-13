@@ -1,0 +1,7 @@
+{
+  "name": "qrjeep",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
