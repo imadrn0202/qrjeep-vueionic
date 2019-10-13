@@ -9,9 +9,12 @@
             </ion-col>
             <ion-col>
                 <ion-item>
-                    <ion-button type="submit" color="primary" expand="block">
+                    <ion-button type="submit" color="primary" expand="block" :disabled="$store.state.checknumber.status === 'loading'" >
                         Next
                     </ion-button>
+                    <ion-text v-if="$store.state.checknumber.status === 'error'" color="danger">
+                    <p>Number is Invalid</p>
+                  </ion-text>
                 </ion-item>
             </ion-col>
     </form>
@@ -31,8 +34,7 @@ export default {
     },
     computed: {
       ...mapState([
-        'validating',
-        'validated',
+        'status'
       ]),
     },
     methods: {

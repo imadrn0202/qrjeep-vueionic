@@ -2,11 +2,10 @@ import axios from 'axios'
 import router from '../router';
 
 
-const baseUrl = 'http://qrjeepapi.test'
+const baseUrl = 'https://sleepy-thicket-43524.herokuapp.com'
 
 const state = {
-    validating: false,
-    validated: false
+    status: '',
 };
 
 const actions = {
@@ -14,25 +13,27 @@ const actions = {
     async onCheckMobileNumberSubmit({
         commit
     }, mobile_number) {
-        commit('validating', true)
+        commit('validating', 'loading')
+        console.log(state.status);
 
         await axios.post(baseUrl + '/api/checkMobileNumber', {
             mobile_number
             })
             .then(response => {
-                commit('validated', true)
-                commit('validating', false)
+                commit('validating', 'success')
 
                 router.push({ path: 'LoginVerify', query: { mobile_number: response.data.mobile_number['mobile_number'] } })
+
         
             })
             .catch(error => { //console
                 console.log(error)
-                commit('validating', false)
-                commit('validated', false)
+                commit('validating', 'error')
             })
 
     }
+
+    
 
 
 };
@@ -41,14 +42,8 @@ const actions = {
 const mutations = {
 
     validating: (state, message) => {
-
-        state.validating = message;
-
+        state.status = message
     },
-    validated: (state, message) => {
-
-        state.validated = message;
-    }
 };
 
 

@@ -1,5 +1,12 @@
 <template>
-  <ion-grid>
+<div class="ion-page">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>QR Jeep</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+          <ion-grid>
       <form @submit.prevent="onSubmit">
       <ion-row>
           <ion-col size="12">
@@ -10,14 +17,21 @@
           </ion-col>
          <ion-col>
                 <ion-item>
-                    <ion-button type="submit" color="primary" expand="block">
+                    <ion-button type="submit" color="primary" expand="block" :disabled="status === 'loading'">
                         Verify
                     </ion-button>
+                  <ion-text v-if="status === 'invalid'" color="danger">
+                    <p>SMS Code is Invalid</p>
+                  </ion-text>
                 </ion-item>
         </ion-col>
       </ion-row>
       </form>
   </ion-grid>
+    </ion-content>
+  </div>
+
+
 </template>
 
 <script>
@@ -33,8 +47,9 @@ export default {
     },
     computed: {
       ...mapState([
+        'status',
+        'token',
         'validating',
-        'validated',
       ]),
       
     },

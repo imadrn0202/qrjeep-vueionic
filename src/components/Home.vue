@@ -2,7 +2,7 @@
   <div class="ion-page">
     <ion-header>
       <ion-toolbar>
-        <ion-title>QR Jeepz</ion-title>
+        <ion-title>QR Jeep</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
