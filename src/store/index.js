@@ -9,7 +9,7 @@ import router from '../router';
 Vue.use(Vuex);
 
 
-const baseUrl = 'http://sleepy-thicket-43524.herokuapp.com'
+const baseUrl = 'https://sleepy-thicket-43524.herokuapp.com'
 
 //create store
 export default new Vuex.Store({
