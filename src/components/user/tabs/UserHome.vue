@@ -1,4 +1,4 @@
-<template>
+<template >
   <ion-grid>
     <ion-col>
             <ion-label>Welcome To User Page</ion-label>
@@ -7,6 +7,14 @@
                         Logout
                     </ion-button>
            </ion-item>
+            <ion-item>
+                <router-link to="/usertype" >
+                <ion-button expand="block" :href="'operator'">
+                    <ion-label color="white">Select User type</ion-label>
+                </ion-button>
+                </router-link>
+
+            </ion-item>
     </ion-col>
 </ion-grid>
 </template>

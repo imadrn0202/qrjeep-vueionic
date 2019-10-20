@@ -1,8 +1,8 @@
 import axios from 'axios'
 import router from '../router';
+import {baseUrl} from '../globalvariable'
 
 
-const baseUrl = 'https://sleepy-thicket-43524.herokuapp.com'
 
 const state = {
     status: '',

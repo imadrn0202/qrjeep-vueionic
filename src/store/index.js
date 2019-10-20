@@ -3,13 +3,15 @@ import Vue from 'vue'
 import checknumber from './checknumber'
 import axios from 'axios'
 import router from '../router';
+import balance from './balance'
+import {baseUrl} from '../globalvariable'
+
+
 
 
 // Load vuex
 Vue.use(Vuex);
 
-
-const baseUrl = 'https://sleepy-thicket-43524.herokuapp.com'
 
 //create store
 export default new Vuex.Store({
@@ -40,12 +42,16 @@ export default new Vuex.Store({
     
     
                     const token = response.data.access_token
+                    const mob = response.data.mobile_number
                     localStorage.setItem('token', token)
+                    localStorage.setItem('mobile_number', mob)
                     //axios.defaults.headers.common['Authorization'] = token
+
+        
                     
                     if (response.data.verified == true) {
                     commit('auth_success', token)
-                    router.push('User')
+                     router.push('usertype')
                     }
                     else {
                         commit('auth_invalid')
@@ -55,6 +61,7 @@ export default new Vuex.Store({
                 .catch(error => {
                     commit('auth_error', error)
                     localStorage.removeItem('token')
+                    localStorage.removeItem('mobile_number')
                     console.log(error)
                 })
     
@@ -64,6 +71,7 @@ export default new Vuex.Store({
             return new Promise((resolve) => {
               commit('logout')
               localStorage.removeItem('token')
+              localStorage.removeItem('mobile_number')
               //delete axios.defaults.headers.common['Authorization']
               router.push('/')
               resolve()
@@ -91,7 +99,8 @@ export default new Vuex.Store({
         },
     },
     modules: {
-        checknumber
+        checknumber,
+        balance
     }
     
 })

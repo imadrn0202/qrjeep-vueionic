@@ -5,7 +5,7 @@ module.exports = {
             navigateFallback: '/index.html',
             runtimeCaching: [
                 {
-                    urlPattern: new RegExp('^https://1c39a18a.ngrok.io/'),
+                    urlPattern: new RegExp('^https://sleepy-thicket-43524.herokuapp.com/'),
                     handler: 'networkFirst',
                     options: {
                         networkTimeoutSeconds: 20,
@@ -17,5 +17,7 @@ module.exports = {
                 }
             ]
         }
-    }
+    },
+
+
 }
