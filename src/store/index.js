@@ -6,6 +6,8 @@ import router from '../router';
 import balance from './balance'
 import {baseUrl} from '../globalvariable'
 
+import pin from './pin'
+
 
 
 
@@ -51,7 +53,7 @@ export default new Vuex.Store({
                     
                     if (response.data.verified == true) {
                     commit('auth_success', token)
-                     router.push('usertype')
+                     router.push('pin')
                     }
                     else {
                         commit('auth_invalid')
@@ -100,7 +102,8 @@ export default new Vuex.Store({
     },
     modules: {
         checknumber,
-        balance
+        balance,
+        pin
     }
     
 })

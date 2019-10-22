@@ -8,6 +8,7 @@ import MobileQrCode from './components/user/tabs/MobileQrCode'
 import AddBalance from './components/operator/tabs/AddBalance'
 import Operator from './components/operator/Operator.vue'
 import UserType from './components/UserType.vue'
+import Pin from './components/user/tabs/Pin.vue'
 
 
 
@@ -27,6 +28,15 @@ let router = new IonicVueRouter({
       name: 'loginverify',
       component: LoginVerify,
       props: true
+    },
+    {
+      path: '/pin',
+      name: 'pin',
+      component: Pin,
+      props: true,
+      meta: { 
+        requiresAuth: true
+      }
     },
     {
       path: '/usertype',
