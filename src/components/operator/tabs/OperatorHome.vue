@@ -1,7 +1,7 @@
 <template>
   <ion-grid>
     <ion-col>
-      <ion-label>Welcome To User Page</ion-label>
+      <ion-label>Welcome To Operator Page</ion-label>
       <ion-item>
         <ion-button v-on:click="logout" type="submit" color="primary" expand="block">
           Logout
@@ -9,7 +9,7 @@
       </ion-item>
        <ion-item>
                 <router-link to="/usertype" >
-                <ion-button expand="block" :href="'operator'">
+                <ion-button expand="block">
                      <ion-label color="white">Select User type</ion-label>
                 </ion-button>
                 </router-link>

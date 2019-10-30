@@ -14,6 +14,7 @@
         <ion-col>
           <div class="ion-text-center">
             <ion-text color="primary">
+               <!--  <h1 v-if="$store.state.pin.hasPinStatus === 'success'"> New Pin </h1> -->
                  <h1> {{ validationMessage }} </h1>
               <h1>{{ pin }}</h1>
               <ion-text v-if="$store.state.pin.status === 'wrongPin'" color="danger">
@@ -87,6 +88,24 @@
           <ion-button :disabled="buttonDisabled || $store.state.pin.status === 'loading'" type="submit"> Next </ion-button>
         </ion-col>
       </ion-row>
+
+      <ion-row>
+        <ion-col>
+                <ion-button :disabled="$store.state.pin.hasVerifiedEmailStatus === 'loading'" @click="resetPin()" >Reset Pin</ion-button>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+      <ion-col>
+                <ion-item>
+                <ion-text v-if="$store.state.pin.hasVerifiedEmailStatus === 'unverified'" color="danger">
+                    <p>Please add and verify your email</p>
+                  </ion-text>
+                </ion-item>
+        </ion-col>
+         </ion-row>
+
+
       </form>
     </ion-grid>
             </ion-content>
@@ -109,7 +128,7 @@ name: 'Pin',
         'locked_until'
       ]),
       validationMessage: function ()  {
-        if (this.pin.length != 5) {
+        if (this.pin.length != 5 ) {
           return 'Please input 5 digit pin';
         }
 
@@ -122,12 +141,18 @@ name: 'Pin',
     },
     methods: {
       ...mapActions([
-        'onPinSubmit'
+        'onPinSubmit',
+        'onCheckVerifiedEmailSubmit',
+        'hasPin'
       ]),
       onSubmit() {
            this.onPinSubmit({
              pin: this.pin
            })
+      },
+
+      resetPin() {
+        this.onCheckVerifiedEmailSubmit();
       },
 
       addPin(value) {
@@ -139,6 +164,10 @@ name: 'Pin',
       clearPin() {
         this.pin = '';
       }
+  },
+  beforeMount() {
+      this.hasPin()
   }
+
 }
 </script>

@@ -9,8 +9,17 @@
            </ion-item>
             <ion-item>
                 <router-link to="/usertype" >
-                <ion-button expand="block" :href="'operator'">
+                <ion-button expand="block">
                     <ion-label color="white">Select User type</ion-label>
+                </ion-button>
+                </router-link>
+
+            </ion-item>
+
+            <ion-item>
+                <router-link to="/user/addemail" >
+                <ion-button expand="block">
+                    <ion-label color="white">Add Email</ion-label>
                 </ion-button>
                 </router-link>
 

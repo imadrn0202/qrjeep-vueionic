@@ -16,9 +16,9 @@ const actions = {
     }) {
         commit('balanceStatus', 'loading')
         await axios.post(baseUrl + '/api/checkBalance')
+        // eslint-disable-next-line        
         .then(response => {
             commit('balanceStatus', 'success')
-            console.log(response);
             commit('balance', response.data.balance)
         })
         .catch(error => {
@@ -36,9 +36,9 @@ const actions = {
         await axios.post(baseUrl + '/api/addBalance', {
             data
             })
+            // eslint-disable-next-line  
             .then(response => {
                 commit('validating', 'success')
-                console.log(response.data);
             })
             .catch(error => { //console
                 console.log(error)

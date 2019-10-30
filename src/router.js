@@ -9,6 +9,8 @@ import AddBalance from './components/operator/tabs/AddBalance'
 import Operator from './components/operator/Operator.vue'
 import UserType from './components/UserType.vue'
 import Pin from './components/user/tabs/Pin.vue'
+import ResetPin from './components/user/tabs/ResetPin'
+import AddEmail from './components/user/tabs/AddEmail'
 
 
 
@@ -29,6 +31,7 @@ let router = new IonicVueRouter({
       component: LoginVerify,
       props: true
     },
+    /* pin */
     {
       path: '/pin',
       name: 'pin',
@@ -38,6 +41,17 @@ let router = new IonicVueRouter({
         requiresAuth: true
       }
     },
+    {
+      path: '/resetpin',
+      name: 'resetpin',
+      component: ResetPin,
+      props: true,
+      meta: { 
+        requiresAuth: true
+      }
+    },
+    /* end pin */
+
     {
       path: '/usertype',
       name: 'usertype',
@@ -66,6 +80,16 @@ let router = new IonicVueRouter({
       }
    
     },
+    {
+      path: '/user/addemail',
+      name: 'addemail',
+      component: AddEmail,
+      meta: { 
+        requiresAuth: true
+      }
+   
+    },
+    
     /* end user */
     /* operator */
     {
