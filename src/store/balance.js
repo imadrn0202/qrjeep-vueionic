@@ -6,7 +6,8 @@ import {baseUrl} from '../globalvariable'
 const state = {
     status: '',
     balance: '',
-    balanceStatus: ''
+    balanceStatus: '',
+    paypalStatus: ''
 };
 
 const actions = {
@@ -45,7 +46,28 @@ const actions = {
                 commit('validating', 'error')
             })
 
+    },
+
+    async onAddBalancePaypalSubmit({
+        commit
+    }, data) {
+        commit('paypalStatus', 'loading')
+        console.log(state.status);
+
+        await axios.post(baseUrl + '/api/paypal', {
+            data
+            })
+            // eslint-disable-next-line  
+            .then(response => {
+                commit('paypalStatus', 'success')
+            })
+            .catch(error => { //console
+                console.log(error)
+                commit('paypalStatus', 'error')
+            })
+
     }
+
 
     
 
@@ -65,6 +87,10 @@ const mutations = {
 
     balanceStatus: (state, message) => {
         state.balanceStatus = message
+    },
+
+    paypalStatus: (state, message) => {
+        state.paypalStatus = message
     },
 };
 

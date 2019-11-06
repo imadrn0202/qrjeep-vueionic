@@ -7,26 +7,49 @@
           Logout
         </ion-button>
       </ion-item>
-       <ion-item>
-                <router-link to="/usertype" >
-                <ion-button expand="block">
-                     <ion-label color="white">Select User type</ion-label>
-                </ion-button>
-                </router-link>
-
-            </ion-item>
-
-    </ion-col>
-    <ion-col>
       <ion-item>
-        <ion-button @click="scan()">SCAN  <ion-icon name="qr-scanner"></ion-icon></ion-button>
+        <router-link to="/usertype">
+          <ion-button expand="block">
+            <ion-label color="white">Select User type</ion-label>
+          </ion-button>
+        </router-link>
+
+
+
+      </ion-item>
+
+      <ion-item>
+        <router-link to="/operator/driverlist">
+          <ion-button expand="block">
+            <ion-label color="white">My Driver List</ion-label>
+          </ion-button>
+        </router-link>
+
+          <router-link to="/operator/createdriver">
+          <ion-button expand="block">
+            <ion-label color="white">Create Driver</ion-label>
+          </ion-button>
+        </router-link>
+
+
+
+
+      </ion-item>
+
+  
+      <ion-item>
+        <ion-button @click="scan()">SCAN USER QR TO ADD BALANCE <ion-icon name="qr-scanner"></ion-icon>
+        </ion-button>
       </ion-item>
     </ion-col>
   </ion-grid>
 </template>
 
 <script>
- import { mapState, mapActions } from 'vuex';
+  import {
+    mapState,
+    mapActions
+  } from 'vuex';
   /* eslint-disable */
   export default {
 
@@ -37,17 +60,17 @@
       }
     },
     methods: {
-        ...mapState([
-          'status',
-          'token',
-        ]),
-        ...mapActions([
-          'onLogout'
-        ]),
+      ...mapState([
+        'status',
+        'token',
+      ]),
+      ...mapActions([
+        'onLogout'
+      ]),
 
-        logout() {
-          this.onLogout();
-        },
+      logout() {
+        this.onLogout();
+      },
 
 
 

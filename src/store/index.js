@@ -10,6 +10,8 @@ import {
 
 import pin from './pin'
 import addemail from './addemail'
+import fare from './fare'
+import operator from './operator'
 
 
 
@@ -107,7 +109,9 @@ export default new Vuex.Store({
         checknumber,
         balance,
         pin,
-        addemail
+        addemail,
+        fare,
+        operator
     }
 
 })

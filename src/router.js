@@ -11,7 +11,11 @@ import UserType from './components/UserType.vue'
 import Pin from './components/user/tabs/Pin.vue'
 import ResetPin from './components/user/tabs/ResetPin'
 import AddEmail from './components/user/tabs/AddEmail'
-
+import FareMatrix from './components/user/tabs/fare/FareMatrix'
+import FareUserType from './components/user/tabs/fare/FareUserType'
+import AddBalancePaypal from './components/user/tabs/AddBalancePaypal'
+import CreateDriver from './components/operator/CreateDriver'
+import DriverList from './components/operator/DriverList'
 
 
 Vue.use(IonicVueRouter)
@@ -89,6 +93,37 @@ let router = new IonicVueRouter({
       }
    
     },
+    {
+      path: '/user/paypal',
+      name: 'paypal',
+      component: AddBalancePaypal,
+      meta: { 
+        requiresAuth: true
+      }
+   
+    },
+
+    /* fare */
+    {
+      path: '/user/fare/pay',
+      name: 'farematrix',
+      component: FareMatrix,
+      meta: { 
+        requiresAuth: true
+      }
+   
+    },
+    {
+      path: '/user/fare/type',
+      name: 'fareusertype',
+      component: FareUserType,
+      meta: { 
+        requiresAuth: true
+      }
+   
+    },
+
+    /* endfare */
     
     /* end user */
     /* operator */
@@ -105,6 +140,24 @@ let router = new IonicVueRouter({
       path: '/operator/addbalance',
       name: 'addbalance',
       component: AddBalance,
+      meta: { 
+        requiresAuth: true
+      }
+   
+    },
+    {
+      path: '/operator/createdriver',
+      name: 'createdriver',
+      component: CreateDriver,
+      meta: { 
+        requiresAuth: true
+      }
+   
+    },
+    {
+      path: '/operator/driverlist',
+      name: 'driverlist',
+      component: DriverList,
       meta: { 
         requiresAuth: true
       }

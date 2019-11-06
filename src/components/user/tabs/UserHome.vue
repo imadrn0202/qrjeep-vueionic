@@ -24,6 +24,15 @@
                 </router-link>
 
             </ion-item>
+
+            <ion-item>
+                <router-link to="/user/fare/type" >
+                <ion-button expand="block">
+                    <ion-label color="white">Pay</ion-label>
+                </ion-button>
+                </router-link>
+
+            </ion-item>
     </ion-col>
 </ion-grid>
 </template>
