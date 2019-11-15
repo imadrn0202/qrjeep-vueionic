@@ -2,21 +2,36 @@
     <div class="ion-page">
         <ion-header>
             <ion-toolbar>
-                <ion-title>QR Jeep - My Fare Logs</ion-title>
+                <ion-title>QR Jeep - Fare Logs</ion-title>
             </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
             <ion-grid>
 
-                <ion-spinner v-if="$store.state.operator.getDriverListStatus === 'loading'" name="circles"></ion-spinner>
+                <ion-spinner v-if="$store.state.user.userFareLogsStatus === 'loading'" name="circles"></ion-spinner>
 
                 <ion-card
-                v-for="(item, index) in $store.state.operator.drivers" :key="index" >
+                v-for="(item, index) in $store.state.user.userFareLogs" :key="index" >
                     <ion-card-header>
-                        <ion-card-subtitle>{{item.first_name}} {{item.last_name}}</ion-card-subtitle>
-                         <ion-card-subtitle>PN: {{item.plate_number}}</ion-card-subtitle>
-                          <ion-card-subtitle>Balance: PHP {{item.balance}} </ion-card-subtitle>
+                        <ion-card-subtitle>Fare Payment ID: {{item.id}}</ion-card-subtitle>
                     </ion-card-header>
+
+                     <ion-card-content>
+                        <ion-label>From: {{item.origin}}</ion-label>
+                        <br>
+                        <ion-label>To: {{item.destination}}</ion-label>
+                        <br>
+                        <ion-text color="success">Fare: PHP: {{item.fare}}</ion-text>
+                        <br>
+                        <ion-text>Quantity: {{item.quantity}}</ion-text>
+                        <br>
+                        <ion-text color="primary">Discounted Amount: PHP: {{item.initial_amount}}</ion-text>
+                        <br>
+                        <ion-text color="danger">Final Amount: PHP: {{item.final_amount}}</ion-text>
+                        <br>
+                        <ion-text>Date: {{item.created_at}}</ion-text>
+                    </ion-card-content>
+
 
      
                     </ion-card>
@@ -34,12 +49,14 @@
         name: 'FareLogs',
         methods: {
             ...mapActions([
-                'onDriverList'
+                'onUserFareLogs',
             ]),
 
-            getDriverList() {
-                this.onDriverList()
+            getUserFareLogs() {
+                this.onUserFareLogs()
             },
+
+     
             doRefresh(event) {
                 console.log('Begin async operation');
 
@@ -53,7 +70,7 @@
 
         },
         beforeMount() {
-            this.getDriverList()
+            this.getUserFareLogs()
         },
 
     }

@@ -2,12 +2,12 @@ import axios from 'axios'
 import {baseUrl} from '../globalvariable'
 
 
-
 const state = {
     status: '',
     balance: '',
     balanceStatus: '',
-    paypalStatus: ''
+    paypalStatus: '',
+    paypalUrl: ''
 };
 
 const actions = {
@@ -60,6 +60,11 @@ const actions = {
             // eslint-disable-next-line  
             .then(response => {
                 commit('paypalStatus', 'success')
+                if (response.data.url != null){
+                    window.location.href = response.data.url
+
+                }
+                console.log(response.data.url);
             })
             .catch(error => { //console
                 console.log(error)

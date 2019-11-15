@@ -16,6 +16,8 @@ import FareUserType from './components/user/tabs/fare/FareUserType'
 import AddBalancePaypal from './components/user/tabs/AddBalancePaypal'
 import CreateDriver from './components/operator/CreateDriver'
 import DriverList from './components/operator/DriverList'
+import FareLogs from './components/user/logs/FareLogs'
+import TransactionLogs from './components/user/logs/TransactionLogs'
 
 
 Vue.use(IonicVueRouter)
@@ -97,6 +99,25 @@ let router = new IonicVueRouter({
       path: '/user/paypal',
       name: 'paypal',
       component: AddBalancePaypal,
+      meta: { 
+        requiresAuth: true
+      }
+   
+    },
+    {
+      path: '/user/farelogs',
+      name: 'farelogs',
+      component: FareLogs,
+      meta: { 
+        requiresAuth: true
+      }
+   
+    },
+
+    {
+      path: '/user/transactionlogs',
+      name: 'transactionlogs',
+      component: TransactionLogs,
       meta: { 
         requiresAuth: true
       }

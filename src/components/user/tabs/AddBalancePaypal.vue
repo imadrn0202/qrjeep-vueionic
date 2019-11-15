@@ -18,9 +18,16 @@
                             </ion-col>
                             <ion-col>
                                 <ion-item>
-                                    <ion-button type="submit" color="primary" expand="block">
+                                    <ion-button :disabled="$store.state.balance.paypalStatus === 'loading'" type="submit" color="primary" expand="block">
                                         Checkout via Paypal
                                     </ion-button>
+                                     </ion-item>
+                    <ion-item>
+                                    <ion-text v-if="$store.state.balance.paypalStatus === 'loading'" color="success">
+                                        <p>Redirecting . . . Please Wait</p>
+                                        <ion-spinner name="circles"></ion-spinner>
+                                    </ion-text>
+                                    
                                 </ion-item>
                             </ion-col>
                         </form>
@@ -53,7 +60,8 @@
 
             onSubmit() {
                 this.onAddBalancePaypalSubmit({
-                    amount: this.amount
+                    amount: this.amount,
+                    mobile_number: localStorage.getItem('mobile_number')
                 });
             }
 

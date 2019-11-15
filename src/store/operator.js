@@ -1,5 +1,5 @@
 import axios from 'axios'
-//import router from '../router';
+import router from '../router';
 import {baseUrl} from '../globalvariable'
 
 
@@ -24,7 +24,7 @@ const actions = {
                 commit('createDriverStatus', 'success')
 
                 console.log(response)
-                //router.push({ path: 'LoginVerify', query: { mobile_number: response.data.mobile_number['mobile_number'] } })
+                router.push('/operator/driverlist')
 
         
             })

@@ -13,6 +13,7 @@
                 <ion-card
                 v-for="(item, index) in $store.state.operator.drivers" :key="index" >
                     <ion-card-header>
+                        <ion-card-subtitle>Driver ID: {{item.id}}</ion-card-subtitle>
                         <ion-card-subtitle>{{item.first_name}} {{item.last_name}}</ion-card-subtitle>
                          <ion-card-subtitle>PN: {{item.plate_number}}</ion-card-subtitle>
                           <ion-card-subtitle>Balance: PHP {{item.balance}} </ion-card-subtitle>

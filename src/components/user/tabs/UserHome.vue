@@ -32,6 +32,30 @@
                 </ion-button>
                 </router-link>
 
+                <ion-item>
+                <router-link to="/user/paypal" >
+                <ion-button expand="block">
+                    <ion-label color="white">Add Balance via Paypal</ion-label>
+                </ion-button>
+                </router-link>
+
+            </ion-item>
+
+            </ion-item>
+
+             <ion-item>
+                <router-link to="/user/farelogs" >
+                <ion-button expand="block">
+                    <ion-label color="white">My Fare Logs</ion-label>
+                </ion-button>
+                </router-link>
+
+                <router-link to="/user/transactionlogs" >
+                <ion-button expand="block">
+                    <ion-label color="white">My Transaction/Load Logs</ion-label>
+                </ion-button>
+                </router-link>
+
             </ion-item>
     </ion-col>
 </ion-grid>
