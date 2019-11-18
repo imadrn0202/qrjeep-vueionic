@@ -19,6 +19,8 @@ import DriverList from './components/operator/DriverList'
 import FareLogs from './components/user/logs/FareLogs'
 import TransactionLogs from './components/user/logs/TransactionLogs'
 
+import DriverLog from './components/operator/logs/DriverLog'
+
 
 Vue.use(IonicVueRouter)
 
@@ -29,12 +31,14 @@ let router = new IonicVueRouter({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: { hideNavigation: true }
     },
     {
       path: '/loginverify',
       name: 'loginverify',
       component: LoginVerify,
+      meta: { hideNavigation: true },
       props: true
     },
     /* pin */
@@ -44,7 +48,8 @@ let router = new IonicVueRouter({
       component: Pin,
       props: true,
       meta: { 
-        requiresAuth: true
+        requiresAuth: true,
+        hideNavigation: true
       }
     },
     {
@@ -53,7 +58,8 @@ let router = new IonicVueRouter({
       component: ResetPin,
       props: true,
       meta: { 
-        requiresAuth: true
+        requiresAuth: true,
+        hideNavigation: true
       }
     },
     /* end pin */
@@ -153,7 +159,8 @@ let router = new IonicVueRouter({
       name: 'operator',
       component: Operator,
       meta: { 
-        requiresAuth: true
+        requiresAuth: true,
+        operator: true
       }
    
     },
@@ -162,7 +169,8 @@ let router = new IonicVueRouter({
       name: 'addbalance',
       component: AddBalance,
       meta: { 
-        requiresAuth: true
+        requiresAuth: true,
+        operator: true
       }
    
     },
@@ -171,7 +179,8 @@ let router = new IonicVueRouter({
       name: 'createdriver',
       component: CreateDriver,
       meta: { 
-        requiresAuth: true
+        requiresAuth: true,
+        operator: true
       }
    
     },
@@ -179,10 +188,19 @@ let router = new IonicVueRouter({
       path: '/operator/driverlist',
       name: 'driverlist',
       component: DriverList,
-      meta: { 
-        requiresAuth: true
+       meta: { 
+        requiresAuth: true,
+        operator: true
       }
-   
+    },
+    {
+      path: '/driver/log',
+      name: 'driverlog',
+      component: DriverLog,
+       meta: { 
+        requiresAuth: true,
+        operator: true
+      }
     },
     /* end operator */
 

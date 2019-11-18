@@ -2,45 +2,7 @@
   <ion-grid>
     <ion-col>
       <ion-label>Welcome To Operator Page</ion-label>
-      <ion-item>
-        <ion-button v-on:click="logout" type="submit" color="primary" expand="block">
-          Logout
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <router-link to="/usertype">
-          <ion-button expand="block">
-            <ion-label color="white">Select User type</ion-label>
-          </ion-button>
-        </router-link>
 
-
-
-      </ion-item>
-
-      <ion-item>
-        <router-link to="/operator/driverlist">
-          <ion-button expand="block">
-            <ion-label color="white">My Driver List</ion-label>
-          </ion-button>
-        </router-link>
-
-          <router-link to="/operator/createdriver">
-          <ion-button expand="block">
-            <ion-label color="white">Create Driver</ion-label>
-          </ion-button>
-        </router-link>
-
-
-
-
-      </ion-item>
-
-  
-      <ion-item>
-        <ion-button @click="scan()">SCAN USER QR TO ADD BALANCE <ion-icon name="qr-scanner"></ion-icon>
-        </ion-button>
-      </ion-item>
     </ion-col>
   </ion-grid>
 </template>

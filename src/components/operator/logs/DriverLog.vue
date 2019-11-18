@@ -1,20 +1,26 @@
 <template>
     <div class="ion-page">
+
         <ion-content class="ion-padding">
-            <ion-grid>
+            <ion-spinner v-if="$store.state.operator.getSelectedDriverFareLogStatus === 'loading'" name="circles">
+            </ion-spinner>
+            <ion-grid v-if="$store.state.operator.getSelectedDriverFareLogStatus === 'success'">
 
-                <ion-spinner v-if="$store.state.user.userFareLogsStatus === 'loading'" name="circles"></ion-spinner>
 
-                <ion-card
-                v-for="(item, index) in $store.state.user.userFareLogs" :key="index" >
+                <ion-text v-if="$store.state.operator.getDriverTodayEarningsStatus === 'success'" color="danger">Today
+                    Earnings: PHP {{$store.state.operator.driverTodayEarnings}}</ion-text>
+
+                <ion-card v-for="(item, index) in $store.state.operator.driverLogs" :key="index">
                     <ion-card-header>
                         <ion-card-subtitle>Fare Payment ID: {{item.id}}</ion-card-subtitle>
                     </ion-card-header>
 
-                     <ion-card-content>
+                    <ion-card-content>
                         <ion-label>From: {{item.origin}}</ion-label>
                         <br>
                         <ion-label>To: {{item.destination}}</ion-label>
+                        <br>
+                        <ion-text>Fare Type: {{item.user_type.toUpperCase()}}</ion-text>
                         <br>
                         <ion-text color="success">Fare: PHP: {{item.fare}}</ion-text>
                         <br>
@@ -28,8 +34,8 @@
                     </ion-card-content>
 
 
-     
-                    </ion-card>
+
+                </ion-card>
             </ion-grid>
         </ion-content>
     </div>
@@ -41,17 +47,31 @@
     } from 'vuex';
     export default {
 
-        name: 'FareLogs',
+        name: 'DriverLog',
+        data() {
+            return {
+                driver_id: this.$route.query.driver_id
+            }
+        },
         methods: {
             ...mapActions([
-                'onUserFareLogs',
+                'onGetDriverTodayEarnings',
+                'onGetSelectedDriverFareLog'
             ]),
 
-            getUserFareLogs() {
-                this.onUserFareLogs()
+            getDriverTodayEarnings() {
+                this.onGetDriverTodayEarnings({
+                    driver_id: this.driver_id
+                })
             },
 
-     
+            getSelectedDriverFareLog() {
+                this.onGetSelectedDriverFareLog({
+                    driver_id: this.driver_id
+                })
+            },
+
+
             doRefresh(event) {
                 console.log('Begin async operation');
 
@@ -65,7 +85,8 @@
 
         },
         beforeMount() {
-            this.getUserFareLogs()
+            this.getDriverTodayEarnings()
+            this.getSelectedDriverFareLog()
         },
 
     }

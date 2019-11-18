@@ -1,33 +1,10 @@
 <template>
     <div class="ion-page">
-    <!-- Listen to before and after tab change events -->
-    <ion-tabs>
-      <ion-tab tab="operator" :routes="'operator'">
-        <ion-header>
-          <ion-toolbar>
-            <ion-title>QR Jeep - Operator</ion-title>
-          </ion-toolbar>
-        </ion-header>
+
         <ion-content class="ion-padding">
           <OperatorHome />
         </ion-content>
-      </ion-tab>
 
-
-
-      
-      <!-- Use v-slot:bottom with Vue ^2.6.0 -->
-      <template slot="bottom">
-        <ion-tab-bar>
-          <ion-tab-button tab="operator" :to="{ name: 'operator' }">
-            <ion-icon name="apps"></ion-icon>
-            <ion-label>Home</ion-label>
-            <ion-badge>6</ion-badge>
-          </ion-tab-button>
-
-        </ion-tab-bar>
-      </template>
-    </ion-tabs>
   </div>
 </template>
 

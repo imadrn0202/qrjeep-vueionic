@@ -1,11 +1,6 @@
 <template>
     <div class="ion-page">
 
-                <ion-header>
-                    <ion-toolbar>
-                        <ion-title>QR Jeep - User</ion-title>
-                    </ion-toolbar>
-                </ion-header>
                 <ion-content class="ion-padding">
                     <ion-grid>
                         <form @submit.prevent="onSubmit">

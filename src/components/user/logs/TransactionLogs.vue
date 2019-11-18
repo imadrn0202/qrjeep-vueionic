@@ -1,10 +1,5 @@
 <template>
     <div class="ion-page">
-        <ion-header>
-            <ion-toolbar>
-                <ion-title>QR Jeep - My Transaction/Load Logs</ion-title>
-            </ion-toolbar>
-        </ion-header>
         <ion-content class="ion-padding">
             <ion-grid>
 

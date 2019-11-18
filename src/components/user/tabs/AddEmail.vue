@@ -1,11 +1,7 @@
 <template>
 
     <div class="ion-page">
-        <ion-header>
-            <ion-toolbar>
-                <ion-title>Add Email</ion-title>
-            </ion-toolbar>
-        </ion-header>
+
         <ion-content class="ion-padding">
             <ion-grid>
 
