@@ -20,6 +20,7 @@ import FareLogs from './components/user/logs/FareLogs'
 import TransactionLogs from './components/user/logs/TransactionLogs'
 
 import DriverLog from './components/operator/logs/DriverLog'
+import DriverHome from './components/driver/tabs/DriverHome'
 
 
 Vue.use(IonicVueRouter)
@@ -203,6 +204,16 @@ let router = new IonicVueRouter({
       }
     },
     /* end operator */
+    /* driver */
+    {
+      path: '/driver/home',
+      name: 'DriverHome',
+      component: DriverHome,
+       meta: { 
+        requiresAuth: true,
+      }
+    },
+    /* end driver */
 
   ]
 })

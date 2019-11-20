@@ -30,6 +30,14 @@
                  </router-link>
             </ion-item>
 
+            <ion-item>
+                <router-link to="/driver/home" >
+                 <ion-button expand="block">
+                    <ion-label color="white">Driver</ion-label>
+                </ion-button>
+                 </router-link>
+            </ion-item>
+
         </ion-grid>
     </ion-content>
 
