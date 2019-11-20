@@ -1,6 +1,5 @@
 <template>
     <ion-grid>
-    <ion-col>
            <ion-item>
                 <router-link :to="{ name: 'farematrix', query: {type: 'regular' } }" >
                 <ion-button expand="block">
@@ -9,8 +8,6 @@
                 </router-link>
 
             </ion-item>
-    </ion-col>
-    <ion-col>
            <ion-item>
                 <router-link :to="{ name: 'farematrix', query: {type: 'student' } }" >
                 <ion-button expand="block">
@@ -19,8 +16,6 @@
                 </router-link>
 
             </ion-item>
-    </ion-col>
-    <ion-col>
            <ion-item>
                 <router-link :to="{ name: 'farematrix', query: {type: 'senior' } }" >
                 <ion-button expand="block">
@@ -29,8 +24,6 @@
                 </router-link>
 
             </ion-item>
-    </ion-col>
-    <ion-col>
            <ion-item>
                 <router-link :to="{ name: 'farematrix', query: {type: 'pwd' } }" >
                 <ion-button expand="block">
@@ -39,7 +32,6 @@
                 </router-link>
 
             </ion-item>
-    </ion-col>
 </ion-grid>
   
 </template>
