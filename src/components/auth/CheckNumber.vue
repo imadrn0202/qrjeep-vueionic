@@ -9,12 +9,17 @@
             </ion-col>
             <ion-col>
                 <ion-item>
-                    <ion-button type="submit" color="primary" expand="block" :disabled="$store.state.checknumber.status === 'loading'" >
+                    <ion-button type="submit" color="primary" expand="block" :disabled="validateMobile == false || $store.state.checknumber.status === 'loading'" >
                         Next
                     </ion-button>
                     <ion-text v-if="$store.state.checknumber.status === 'error'" color="danger">
                     <p>Number is Invalid</p>
                   </ion-text>
+
+                  <ion-text  v-if="validateMobile == false" color="danger">
+                      <p>{{validationMessage}}</p>
+                  </ion-text>
+
                 </ion-item>
             </ion-col>
     </form>
@@ -30,12 +35,30 @@ export default {
     data() {
       return {
         mobile_number: '',
+         validateMobile: '',
       }
     },
     computed: {
       ...mapState([
         'status'
       ]),
+      validationMessage: function () {
+                var re = /^(639)\d{9}$/g;
+
+
+                if (re.test(this.mobile_number)) {
+                    // eslint-disable-next-line
+                    this.validateMobile = true
+                    return;
+
+                } else {
+                    // eslint-disable-next-line
+                    this.validateMobile = false
+                    return 'ex: 639231622739';
+                }
+
+
+            },
     },
     methods: {
       ...mapActions([
