@@ -10,33 +10,39 @@
                 <ion-text v-if="$store.state.operator.getDriverTodayEarningsStatus === 'success'" color="danger">Today
                     Earnings: PHP {{$store.state.operator.driverTodayEarnings}}</ion-text>
                     
+<br>
+<br>
+                  <ion-text v-for="(item, index) in $store.state.operator.driverLogs" :key="index">
 
-                <ion-card v-for="(item, index) in $store.state.operator.driverLogs" :key="index">
+                            {{item.date}}
+                <ion-card v-for="(result, index) in item.result" :key="index">
                     <ion-card-header>
-                        <ion-card-subtitle>Fare Payment ID: {{item.id}}</ion-card-subtitle>
+                        <ion-card-subtitle>Fare Payment ID: {{result.id}}</ion-card-subtitle>
                     </ion-card-header>
 
                     <ion-card-content>
-                        <ion-label>From: {{item.origin}}</ion-label>
+                        <ion-label>From: {{result.origin}}</ion-label>
                         <br>
-                        <ion-label>To: {{item.destination}}</ion-label>
+                        <ion-label>To: {{result.destination}}</ion-label>
                         <br>
-                        <ion-text>Fare Type: {{item.user_type.toUpperCase()}}</ion-text>
+                        <ion-text>Fare Type: {{result.user_type.toUpperCase()}}</ion-text>
                         <br>
-                        <ion-text color="success">Fare: PHP: {{formatPrice(item.fare)}}</ion-text>
+                        <ion-text color="success">Fare: PHP: {{formatPrice(result.fare)}}</ion-text>
                         <br>
-                        <ion-text>Quantity: {{item.quantity}}</ion-text>
+                        <ion-text>Quantity: {{result.quantity}}</ion-text>
                         <br>
-                        <ion-text color="primary">Discounted Amount: PHP: {{formatPrice(item.discounted_amount)}}</ion-text>
+                        <ion-text color="primary">Discounted Amount: PHP: {{formatPrice(result.discounted_amount)}}
+                        </ion-text>
                         <br>
-                        <ion-text color="danger">Final Amount: PHP: {{formatPrice(item.final_amount)}}</ion-text>
+                        <ion-text color="danger">Final Amount: PHP: {{formatPrice(result.final_amount)}}</ion-text>
                         <br>
-                        <ion-text>Date: {{item.created_at}}</ion-text>
+                        <ion-text>Date: {{result.created_at}}</ion-text>
                     </ion-card-content>
 
 
 
                 </ion-card>
+                </ion-text>
             </ion-grid>
         </ion-content>
     </div>
