@@ -31,10 +31,14 @@ const actions = {
             data
             })
             .then(response => {
-                commit('createDriverStatus', 'success')
-
-                console.log(response)
-                router.push('/operator/driverlist')
+                if (response.data.success == false) {
+                    commit('createDriverStatus', 'error')
+                }
+                else {
+                    commit('createDriverStatus', 'success')
+                    router.push('/operator/driverlist')
+                }
+       
 
         
             })

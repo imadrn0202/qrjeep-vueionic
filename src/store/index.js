@@ -13,6 +13,7 @@ import addemail from './addemail'
 import fare from './fare'
 import operator from './operator'
 import user from './user'
+import driver from './driver'
 
 
 
@@ -112,7 +113,8 @@ export default new Vuex.Store({
         addemail,
         fare,
         operator,
-        user
+        user,
+        driver
     }
 
 })
