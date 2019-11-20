@@ -1,5 +1,7 @@
 import axios from 'axios'
-import {baseUrl} from '../globalvariable'
+import {
+    baseUrl
+} from '../globalvariable'
 
 
 
@@ -14,7 +16,7 @@ const state = {
 
 const actions = {
 
-  
+
     async onGetDriverEarnings({
         commit
     }) {
@@ -46,29 +48,28 @@ const actions = {
         await axios.get(baseUrl + '/api/getDriverFareLog')
             .then(response => {
 
-               
+
                 commit('getDriverFareLogStatus', 'success')
-                console.log(response.data);
 
                 const data = response.data;
 
                 // this gives an object with dates as keys
                 const groups = data.reduce((groups, game) => {
-                const date = game.created_at.split(' ')[0];
-                if (!groups[date]) {
-                    groups[date] = [];
-                }
-                groups[date].push(game);
-                return groups;
+                    const date = game.created_at.split(' ')[0];
+                    if (!groups[date]) {
+                        groups[date] = [];
+                    }
+                    groups[date].push(game);
+                    return groups;
                 }, {});
 
                 // Edit: to add it in the array format instead
                 const groupArrays = Object.keys(groups).map((date) => {
-                return  {
-                    date,
-                    result: groups[date]
-                };
-             
+                    return {
+                        date,
+                        result: groups[date]
+                    };
+
                 });
 
                 console.log(groupArrays);
@@ -83,7 +84,7 @@ const actions = {
             })
 
     },
-    
+
 
 
 };
@@ -101,15 +102,15 @@ const mutations = {
     },
 
 
-    setDriverLogs (state, driverLogs) {
+    setDriverLogs(state, driverLogs) {
         state.driverLogs = driverLogs;
     },
 
-    setTotalEarnings (state, totalEarnings) {
+    setTotalEarnings(state, totalEarnings) {
         state.totalEarnings = totalEarnings;
     },
 
-    setTodayEarnings (state, todayEarnings) {
+    setTodayEarnings(state, todayEarnings) {
         state.todayEarnings = todayEarnings;
     },
 

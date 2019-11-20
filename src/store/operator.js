@@ -135,9 +135,32 @@ const actions = {
 
         await axios.post(baseUrl + '/api/getSelectedDriverFareLog', {data})
             .then(response => {
-
-                commit('setDriverLogs', response.data)
                 commit('getSelectedDriverFareLogStatus', 'success')
+
+                const data = response.data;
+
+                // this gives an object with dates as keys
+                const groups = data.reduce((groups, game) => {
+                    const date = game.created_at.split(' ')[0];
+                    if (!groups[date]) {
+                        groups[date] = [];
+                    }
+                    groups[date].push(game);
+                    return groups;
+                }, {});
+
+                // Edit: to add it in the array format instead
+                const groupArrays = Object.keys(groups).map((date) => {
+                    return {
+                        date,
+                        result: groups[date]
+                    };
+
+                });
+
+                console.log(groupArrays);
+
+                commit('setDriverLogs', groupArrays)
 
             })
             .catch(error => { //console
