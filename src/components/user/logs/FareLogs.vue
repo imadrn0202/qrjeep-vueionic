@@ -16,13 +16,13 @@
                         <br>
                         <ion-label>To: {{item.destination}}</ion-label>
                         <br>
-                        <ion-text color="success">Fare: PHP: {{item.fare}}</ion-text>
+                        <ion-text color="success">Fare: PHP: {{formatPrice(item.fare)}}</ion-text>
                         <br>
                         <ion-text>Quantity: {{item.quantity}}</ion-text>
                         <br>
-                        <ion-text color="primary">Discounted Amount: PHP: {{item.discounted_amount}}</ion-text>
+                        <ion-text color="primary">Discounted Amount: PHP: {{formatPrice(item.discounted_amount)}}</ion-text>
                         <br>
-                        <ion-text color="danger">Final Amount: PHP: {{item.final_amount}}</ion-text>
+                        <ion-text color="danger">Final Amount: PHP: {{formatPrice(item.final_amount)}}</ion-text>
                         <br>
                         <ion-text>Date: {{item.created_at}}</ion-text>
                     </ion-card-content>
@@ -50,6 +50,12 @@
             getUserFareLogs() {
                 this.onUserFareLogs()
             },
+
+            formatPrice(value) {
+                let val = (value/1).toFixed(2).replace('.', '.')
+                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            },
+
 
      
             doRefresh(event) {

@@ -13,9 +13,9 @@
                     </ion-card-header>
 
                         <ion-card-content>
-                        <ion-label>Amount: {{item.amount}}</ion-label>
+                        <ion-label>Amount: {{formatPrice(item.amount)}}</ion-label>
                         <br>
-                        <ion-label>Date: {{item.created_at}}</ion-label>
+                        <ion-label>Date: {{formatPrice(item.created_at)}}</ion-label>
                     </ion-card-content>
                     </ion-card>
             </ion-grid>
@@ -34,6 +34,11 @@
             ...mapActions([
                 'onUserTransactionLogs'
             ]),
+
+            formatPrice(value) {
+                let val = (value/1).toFixed(2).replace('.', '.')
+                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            },
 
  
             getUserTransactionLogs() {
