@@ -16,44 +16,5 @@
     components: {
       OperatorHome
     },
-    data() {
-      return {
-        scanned_mobile: '',
-      }
-    },
-    methods: {
-      scan() {
-        cordova.plugins.barcodeScanner.scan(
-          result => {
-
-            this.scanned_mobile = result.text
-
-            this.$router.push({
-              path: 'AddBalance',
-              query: {
-                scanned_mobile: this.scanned_mobile
-              }
-            })
-
-
-          },
-          function (error) {
-            alert("Scanning failed: " + error);
-          }, {
-            preferFrontCamera: false, // iOS and Android
-            showFlipCameraButton: true, // iOS and Android
-            showTorchButton: false, // iOS and Android
-            torchOn: true, // Android, launch with the torch switched on (if available)
-            saveHistory: true, // Android, save scan history (default false)
-            prompt: "Place a QR Code inside the scan area", // Android
-            resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-            formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
-            orientation: "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
-            disableSuccessBeep: false // iOS and Android
-          }
-        );
-      },
-
-    }
   }
 </script>

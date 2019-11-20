@@ -2,7 +2,7 @@
   <ion-grid>
     <ion-col>
       <ion-label>Welcome To Operator Page</ion-label>
-
+      <ion-item><img src="../../../assets/Ph_seal_Imus.png"></ion-item>
     </ion-col>
   </ion-grid>
 </template>
