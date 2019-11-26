@@ -2,7 +2,7 @@
     <ion-menu side="start">
         <ion-header>
             <ion-toolbar color="secondary">
-                <ion-title>QR Jeep - Users</ion-title>
+                <ion-title>BITSAI - Users</ion-title>
             </ion-toolbar>
         </ion-header>
         <ion-content padding>
@@ -86,7 +86,7 @@ export default {
      }
 }
 </script>
-<style scoped>
+<style>
     .no-underline {
         text-decoration: none !important;
     }

@@ -16,6 +16,14 @@ const state = {
     totalEarnings: [],
     operatorTodayEarnings: '',
     driverTodayEarnings: '',
+    getDailyReportStatus: '',
+    dailyReport: [],
+    deleteDriverStatus: '',
+    updateDriverStatus: '',
+
+    getDriverByDriverUserIdStatus: '',
+    driverByUserId: [],
+
 
 
 };
@@ -170,6 +178,119 @@ const actions = {
 
     },
 
+    async onGetDailyReport({
+        commit
+    }) {
+        commit('getDailyReportStatus', 'loading')
+
+        await axios.get(baseUrl + '/api/getDailyReport')
+            .then(response => {
+
+
+                commit('getDailyReportStatus', 'success')
+
+                const data = response.data;
+
+                // this gives an object with dates as keys
+                const groups = data.reduce((groups, game) => {
+                    const date = game.created_at.split(' ')[0];
+                   
+
+                    if (!groups[date]) {
+                        groups[date] = [];
+                    }
+                    groups[date].push(game);
+
+
+                    return groups;
+                }, {});
+
+                // Edit: to add it in the array format instead
+                const groupArrays = Object.keys(groups).map((date) => {
+
+                    const sum = groups[date].reduce((a, {earnings}) => a + earnings, 0);
+
+
+                    return {
+                        date,
+                        result: groups[date],
+                        sum
+                    };
+
+                });
+
+                console.log(groupArrays);
+
+
+                commit('setDailyReport', groupArrays)
+
+
+            })
+            .catch(error => { //console
+                console.log(error)
+                commit('getDailyReportStatus', 'error')
+            })
+
+    },
+
+    async onDeleteDriver({
+        commit
+    }, data) {
+        commit('deleteDriverStatus', 'loading')
+
+        await axios.delete(baseUrl + '/api/deleteDriver', {data})
+            .then(response => {
+                commit('deleteDriverStatus', 'success')
+                console.log(response);
+            })
+            .catch(error => { //console
+                console.log(error)
+                commit('deleteDriverStatus', 'error')
+            })
+
+    },
+
+    async onUpdateDriver({
+        commit
+    }, data) {
+        commit('updateDriverStatus', 'loading')
+
+        await axios.delete(baseUrl + '/api/updateDriver', {data})
+            .then(response => {
+                commit('updateDriverStatus', 'success')
+                console.log(response);
+                router.push('/operator/driverlist')
+            })
+            .catch(error => { //console
+                console.log(error)
+                commit('updateDriverStatus', 'error')
+            })
+
+    },
+
+    async onGetDriverByDriverUserId({
+        commit
+    }, data) {
+        commit('getDriverByDriverUserIdStatus', 'loading')
+
+        await axios.post(baseUrl + '/api/getDriverByDriverUserId', {data})
+            .then(response => {
+                commit('getDriverByDriverUserIdStatus', 'success')
+
+                let drivers = response.data;
+                commit('setDriverByUserId', drivers)
+
+
+                console.log(this.driverByUserId);
+            })
+            .catch(error => { //console
+                console.log(error)
+                commit('getDriverByDriverUserIdStatus', 'error')
+            })
+
+    },
+
+
     
 
 
@@ -177,6 +298,25 @@ const actions = {
 
 
 const mutations = {
+
+    getDriverByDriverUserIdStatus: (state, message) => {
+        state.getDriverByDriverUserIdStatus = message
+    },
+
+
+    updateDriverStatus: (state, message) => {
+        state.updateDriverStatus = message
+    },
+
+    deleteDriverStatus: (state, message) => {
+        state.deleteDriverStatus = message
+    },
+
+
+    getDailyReportStatus: (state, message) => {
+        state.getDailyReportStatus = message
+    },
+
 
     createDriverStatus: (state, message) => {
         state.createDriverStatus = message
@@ -205,6 +345,11 @@ const mutations = {
         state.getSelectedDriverFareLogStatus = message
     },
 
+    
+    setDriverByUserId (state, drivers) {
+        state.driverByUserId = drivers;
+    },
+
 
     setDrivers (state, drivers) {
         state.drivers = drivers;
@@ -225,6 +370,11 @@ const mutations = {
     setDriverTodayEarnings (state, driverTodayEarnings) {
         state.driverTodayEarnings = driverTodayEarnings;
     },
+
+    setDailyReport(state, dailyReport) {
+        state.dailyReport = dailyReport;
+    },
+
 
 
 };

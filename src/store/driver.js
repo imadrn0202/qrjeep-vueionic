@@ -8,6 +8,8 @@ import {
 const state = {
     getDriverEarningsStatus: '',
     getDriverFareLogStatus: '',
+    getDailyReportStatus: '',
+    dailyReport: [],
     driverLogs: [],
     todayEarnings: '',
     totalEarnings: ''
@@ -56,23 +58,38 @@ const actions = {
                 // this gives an object with dates as keys
                 const groups = data.reduce((groups, game) => {
                     const date = game.created_at.split(' ')[0];
+
+
                     if (!groups[date]) {
                         groups[date] = [];
                     }
                     groups[date].push(game);
+
+
                     return groups;
                 }, {});
 
+
+
+
+
                 // Edit: to add it in the array format instead
                 const groupArrays = Object.keys(groups).map((date) => {
+
+                    const sum = groups[date].reduce((a, {
+                        final_amount
+                    }) => a + final_amount, 0);
+
                     return {
                         date,
-                        result: groups[date]
+                        result: groups[date],
+                        sum
                     };
 
                 });
 
                 console.log(groupArrays);
+
 
                 commit('setDriverLogs', groupArrays)
 
@@ -84,6 +101,8 @@ const actions = {
             })
 
     },
+
+   
 
 
 
@@ -105,7 +124,7 @@ const mutations = {
     setDriverLogs(state, driverLogs) {
         state.driverLogs = driverLogs;
     },
-
+   
     setTotalEarnings(state, totalEarnings) {
         state.totalEarnings = totalEarnings;
     },

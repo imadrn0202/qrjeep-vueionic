@@ -21,7 +21,9 @@ import TransactionLogs from './components/user/logs/TransactionLogs'
 
 import DriverLog from './components/operator/logs/DriverLog'
 import DriverHome from './components/driver/tabs/DriverHome'
-
+import Reports from './components/operator/Reports'
+import DailyReport from './components/operator/DailyReport'
+import EditDriver from './components/operator/EditDriver'
 
 Vue.use(IonicVueRouter)
 
@@ -190,6 +192,33 @@ let router = new IonicVueRouter({
       name: 'driverlist',
       component: DriverList,
        meta: { 
+        requiresAuth: true,
+        operator: true
+      }
+    },
+    {
+      path: '/operator/reports',
+      name: 'driverlist',
+      component: Reports,
+      meta: {
+        requiresAuth: true,
+        operator: true
+      }
+    },
+    {
+      path: '/operator/dailyreport',
+      name: 'dailyreport',
+      component: DailyReport,
+      meta: {
+        requiresAuth: true,
+        operator: true
+      }
+    },
+    {
+      path: '/operator/editDriver',
+      name: 'editdriver',
+      component: EditDriver,
+      meta: {
         requiresAuth: true,
         operator: true
       }

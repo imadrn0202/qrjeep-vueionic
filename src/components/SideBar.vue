@@ -4,7 +4,7 @@
       <ion-toolbar>
         <ion-item>
           <ion-button @click="openStart">Menu</ion-button>
-            <ion-title>QR Jeep</ion-title>
+            <ion-title>BITSAI</ion-title>
             </ion-item>
       </ion-toolbar>
     </ion-header>

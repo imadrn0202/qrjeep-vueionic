@@ -17,7 +17,6 @@
                 <ion-text v-if="$store.state.driver.getDriverEarningsStatus === 'success'" color="danger">Today
                     Earnings: PHP {{$store.state.driver.todayEarnings}}</ion-text>
                 <br>
-                <br>
                 <ion-text v-if="$store.state.driver.getDriverEarningsStatus === 'success'" color="success">Total
                     Earnings: PHP {{$store.state.driver.totalEarnings}}</ion-text>
 
@@ -25,7 +24,18 @@
 <br>
                   <ion-text v-for="(item, index) in $store.state.driver.driverLogs" :key="index">
 
-                            {{item.date}}
+                            <div class="ion-text-center">
+                            <ion-text class=" secondary">{{item.date}} </ion-text>
+                           
+                            <br>
+                            <ion-text class="fs-09"> Total Earnings: {{formatPrice(item.sum)}} </ion-text>
+                            <br>
+
+                            <ion-text class="fs-09" >My Earnings: {{formatPrice(item.sum * 0.65)}}</ion-text>
+                            <br>
+
+                            <ion-text class="fs-09" >Driver Earnings: {{formatPrice(item.sum * 0.35)}}</ion-text>
+                             </div>
                 <ion-card v-for="(result, index) in item.result" :key="index">
                     <ion-card-header>
                         <ion-card-subtitle>Fare Payment ID: {{result.id}}</ion-card-subtitle>
@@ -49,7 +59,6 @@
                         <br>
                         <ion-text>Date: {{result.created_at}}</ion-text>
                     </ion-card-content>
-
 
 
                 </ion-card>
@@ -112,3 +121,12 @@
 
     }
 </script>
+<style  scoped>
+.fs-09 {
+    font-size: 0.9rem;
+}
+
+.text-center {
+    align-items: center;
+}
+</style>

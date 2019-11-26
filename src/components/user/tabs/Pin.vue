@@ -3,7 +3,7 @@
 
 <ion-header>
           <ion-toolbar>
-            <ion-title>QR Jeep</ion-title>
+            <ion-title>BITSAI</ion-title>
           </ion-toolbar>
         </ion-header>
         

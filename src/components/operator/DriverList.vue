@@ -2,33 +2,36 @@
     <div class="ion-page">
 
         <ion-content class="ion-padding">
-              <ion-spinner v-if="$store.state.operator.getDriverListStatus === 'loading'" name="circles"></ion-spinner>
-            <ion-grid v-if="$store.state.operator.getDriverListStatus === 'success'" >
+             <ion-refresher slot="fixed" @ionRefresh="doRefresh($event)">
+                <ion-refresher-content pulling-icon="arrow-dropdown" pulling-text="Pull to refresh"
+                    refreshing-spinner="circles" refreshing-text="Refreshing...">
+                </ion-refresher-content>
+            </ion-refresher>
 
-              
-                <ion-text v-if="$store.state.operator.getTotalEarningsStatus === 'success'" color="danger">Overall Earnings: {{$store.state.operator.totalEarnings.total_earnings}}</ion-text>
-                <br>
-                <ion-text v-if="$store.state.operator.getTotalEarningsStatus === 'success'" color="success">My Overall Earnings: {{$store.state.operator.totalEarnings.operator_earnings}}</ion-text>
+            <ion-spinner v-if="$store.state.operator.getDriverListStatus === 'loading'" name="circles"></ion-spinner>
+            <ion-grid v-if="$store.state.operator.getDriverListStatus === 'success'">
 
-            
 
-                <ion-card
-                v-for="(item, index) in $store.state.operator.drivers" :key="index" >
-                    <router-link class="no-underline" :to="{ path: '/driver/log', query: { driver_id: item.id}}">
+                <ion-card v-for="(item, index) in $store.state.operator.drivers" :key="index">
+
                     <ion-card-header>
                         <ion-card-subtitle>Driver ID: {{item.id}}</ion-card-subtitle>
                         <ion-card-subtitle>{{item.first_name}} {{item.last_name}}</ion-card-subtitle>
-                         <ion-card-subtitle>PN: {{item.plate_number}}</ion-card-subtitle>
-                            <ion-card-subtitle>Total Earnings: PHP {{formatPrice(item.balance)}} </ion-card-subtitle>
-                          <ion-card-subtitle>My Earnings: PHP {{formatPrice(item.operatorEarnings)}} </ion-card-subtitle>
-                     
-                          <ion-card-subtitle>Driver Earnings : PHP {{formatPrice(item.balanceWithCut)}} </ion-card-subtitle>
+                        <ion-card-subtitle>Plate Number: {{item.plate_number}}</ion-card-subtitle>
+                         <ion-card-subtitle>Mobile Number: {{item.mobileNumber}}</ion-card-subtitle>
+                         <br>
+                         <ion-button size="small" color="danger" :disabled="$store.state.operator.deleteDriverStatus === 'loading'" v-on:click="deleteDriver(item.id)">Delete</ion-button>
+
+                           <router-link class="no-underline" :to="{ path: '/operator/editdriver', query: { driver_id: item.id}}">
+
+                          <ion-button size="small" color="primary" >Update</ion-button>
+                           </router-link>
+                          <ion-spinner v-if="$store.state.operator.deleteDriverStatus === 'loading'" name="circles"></ion-spinner>
                     </ion-card-header>
 
-       </router-link>
-                    </ion-card>
+                </ion-card>
 
-              
+
             </ion-grid>
         </ion-content>
     </div>
@@ -39,34 +42,33 @@
         mapActions
     } from 'vuex';
     export default {
-
         name: 'DriverList',
         methods: {
             ...mapActions([
                 'onDriverList',
-                'onGetTotalEarnings',
-                'onGetOperatorTodayEarnings'
+                'onDeleteDriver'
             ]),
-            formatPrice(value) {
-                let val = (value/1).toFixed(2).replace('.', '.')
-                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+
+            deleteDriver(id) {
+                this.onDeleteDriver({
+                    driver_id: id
+                }).then(() => {
+                this.getDriverList();
+                    
+                })
+
             },
+
 
             getDriverList() {
                 this.onDriverList()
-            },
-            getTotalEarnings() {
-                this.onGetTotalEarnings()
-            },
-            getOperatorTodayEarnings() {
-                this.onGetOperatorTodayEarnings()
             },
             doRefresh(event) {
                 console.log('Begin async operation');
 
                 setTimeout(() => {
                     console.log('Async operation has ended');
-                    this.getBalance();
+                    this.getDriverList();
                     event.target.complete();
                 }, 2000);
             },
@@ -75,8 +77,6 @@
         },
         beforeMount() {
             this.getDriverList()
-            this.getTotalEarnings()
-            this.getOperatorTodayEarnings()
         },
 
     }

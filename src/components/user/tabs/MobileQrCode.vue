@@ -26,6 +26,10 @@
               <ion-text color="success" v-if="$store.state.balance.balanceStatus === 'success'">
                 {{ $store.state.balance.balance }} </ion-text>
 
+                <br>
+                <br>
+                 <ion-text color="primary"> My Number: {{mobile_number }} </ion-text>
+
             </ion-label>
 
 
